@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-table-levels',
@@ -31,24 +31,23 @@ export class TableLevelsComponent implements OnInit {
 ];
 
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    const url = window.location.pathname; 
-    const lastSlashIndex = url.lastIndexOf('/');
-    const level = url.slice(lastSlashIndex + 1);
-    if(level === 'Advanced'){
-      this.levelSelected = 'Advanced';
-      this.images = this.images.slice(10, 16);
-    } 
-    else if(level === 'Intermediate'){
-      this.levelSelected = 'Intermediate';
-      this.images = this.images.slice(5, 10);
-    }
-    else if(level === 'Beginner'){
-      this.levelSelected = 'Beginner';
-      this.images = this.images.slice(0, 5);
-    }
+    this.route.url.subscribe(segments => {
+      const level = segments[segments.length - 1]?.path;
+  
+      if (level === 'Advanced') {
+        this.levelSelected = 'Advanced';
+        this.images = this.images.slice(10, 16);
+      } else if (level === 'Intermediate') {
+        this.levelSelected = 'Intermediate';
+        this.images = this.images.slice(5, 10);
+      } else {
+        this.levelSelected = 'Beginner';
+        this.images = this.images.slice(0, 5);
+      }
+    });
   }
 
   getAdjustedIndex(i: number): number {

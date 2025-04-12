@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-play-table-game',
@@ -233,14 +234,15 @@ export class PlayTableGameComponent implements OnInit {
     16: "../../assets/movingImages/mushroom.png"
   };
 
-  constructor() { }
+  constructor(private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    const url = window.location.pathname; 
-    const lastSlashIndex = url.lastIndexOf('/');
-    const number = url.slice(lastSlashIndex + 1);
-    this.tableNumber = +number || 1; 
-    this.initGame();
+    this.route.paramMap.subscribe(params => {
+      const numberParam = params.get('id');
+      console.log('Number from URL:', numberParam);
+      this.tableNumber = numberParam ? +numberParam : 1;
+      this.initGame();
+    });
   }
 
   initGame(): void {
