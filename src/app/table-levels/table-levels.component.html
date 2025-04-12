@@ -1,0 +1,34 @@
+<!-- Navbar -->
+<nav class="navbar">
+    <div class="navbar-left">
+      <h1>Kids Portal</h1>
+    </div>
+    <div class="navbar-right">
+      <button class="advanced-button">Advanced Concepts</button>
+      <button class="advanced-button">Home</button>
+      <!-- Mobile menu button (hamburger) -->
+      <button class="mobile-menu-button" (click)="toggleMobileMenu()">
+        ☰
+      </button>
+    </div>
+    <!-- Mobile menu (hidden by default) -->
+    <div class="mobile-menu" [class.active]="mobileMenuOpen">
+      <button class="mobile-menu-item">Advanced Concepts</button>
+      <button class="mobile-menu-item">Home</button>
+
+      <!-- Add other menu items as needed -->
+    </div>
+  </nav>
+
+<div id="main-content" >
+    <!-- Cards for Tables -->
+    <div class="cards-container-game" >
+        <div class="card-game" *ngFor="let image of images; let i = index">
+            <img [src]="image" [alt]="'Card Image ' + getAdjustedIndex(i)" >
+            <h3>Table for {{ getAdjustedIndex(i)+1 }}</h3>
+            <button class="play-button" (click)="goToPlay(getAdjustedIndex(i)+1)">
+                <a>Play</a>
+            </button>
+        </div>
+    </div>
+</div>

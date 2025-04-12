@@ -1,0 +1,68 @@
+<!-- Navbar -->
+
+<nav class="navbar">
+    <div class="navbar-left">
+      <h1>Kids Portal</h1>
+    </div>
+    <div class="navbar-right">
+      <button class="advanced-button" (click)="submitBaskets()">Submit</button>
+      <button class="advanced-button" (click)="clearBaskets()">Clear All</button>
+      <!-- Mobile menu button (hamburger) -->
+      <button class="mobile-menu-button" (click)="toggleMobileMenu()">
+        ☰
+      </button>
+    </div>
+    <!-- Mobile menu (hidden by default) -->
+    <div class="mobile-menu" [class.active]="mobileMenuOpen">
+      <button class="mobile-menu-item">Advanced Concepts</button>
+      <button class="mobile-menu-item">Home</button>
+
+      <!-- Add other menu items as needed -->
+    </div>
+  </nav>
+
+<div class="monkey-container">
+    <img id="sideImageleft" [src]="sideImagesLeft[tableNumber]">
+    <div class="quote-box quote-box-left">
+        <p id="leftquote">{{ leftQuotes[tableNumber] }}</p>
+    </div>
+</div>
+
+<div class="monkey-container-right">
+    <img id="sideImageright" [src]="sideImagesRight[tableNumber]">
+    <div class="quote-box quote-box-right">
+        <p id="rightquote">{{ rightQuotes[tableNumber] }}</p>
+    </div>
+</div>
+
+<div class="cards-container-game">
+    <!-- Tree or Pot based on table number -->
+    <div class="tree-container">
+        <img id="tree" [src]="images[tableNumber]" (click)="onTreeClick($event)">
+    </div>
+    <!-- Baskets for apples/flowers -->
+    <div class="baskets-container" id="baskets-container">
+        <div *ngFor="let basket of baskets; let i = index" class="basket">
+            <img [src]="basketImages[tableNumber]" alt="Basket {{ i + 1 }}" id="basket{{ i + 1 }}">
+            <div class="apple-holder" id="apple-holder{{ i + 1 }}"></div>
+            <div class="number" id="number{{ i + 1 }}"></div>
+        </div>
+    </div>
+</div>
+
+<div class="leftBush">
+    <img id="leftFooter" [src]="leftFooterImages[tableNumber]">
+</div>
+
+<div class="rightBush">
+    <img id="rightFooter" [src]="rightFooterImages[tableNumber]">
+</div>
+
+<div id="myModal" class="modal" [ngStyle]="{'display': modalDisplay}">
+    <div class="modal-content">
+        <span class="close" (click)="closeModal()">&times;</span>
+        <p id="modalContent" style="display: none;"></p>
+        <img id="modal_img" [src]="modalImages[tableNumber]">
+        <p id="multiplication">{{multiplicationText}}</p>
+    </div>
+</div>

@@ -1,0 +1,43 @@
+<nav class="navbar">
+  <div class="navbar-left">
+    <h1>Kids Portal</h1>
+  </div>
+  <div class="navbar-right">
+    <button class="advanced-button">Advanced Concepts</button>
+    <!-- Mobile menu button (hamburger) -->
+    <button class="mobile-menu-button" (click)="toggleMobileMenu()">
+      ☰
+    </button>
+  </div>
+  <!-- Mobile menu (hidden by default) -->
+  <div class="mobile-menu" [class.active]="mobileMenuOpen">
+    <button class="mobile-menu-item">Advanced Concepts</button>
+    <!-- Add other menu items as needed -->
+  </div>
+</nav>
+
+<div class="container">
+  <!-- Single Carousel Row for all 10 cards -->
+  <div class="cards-carousel-container">
+    <div class="carousel-arrow left-arrow" (click)="scrollCarousel(-1)">‹</div>
+    <div class="cards-carousel">
+      <div class="card" *ngFor="let card of cards" (click)="selectCard(card.image)">
+        {{ card.title }}
+      </div>
+    </div>
+    <div class="carousel-arrow right-arrow" (click)="scrollCarousel(1)">›</div>
+  </div>
+
+  <!-- Middle Section with Image -->
+  <div class="middle-section">
+    <img [src]="selectedImage" alt="Selected Image">
+    <div class="buttons" *ngIf="isCardSelected">
+      <button routerLink="/tables" (click)="onLevelSelect('Beginner')">Beginner</button>
+      <button routerLink="/tables" (click)="onLevelSelect('Intermediate')">Intermediate</button>
+      <button routerLink="/tables" (click)="onLevelSelect('Advanced')">Advanced</button>
+    </div>
+  </div>
+</div>
+  
+
+  <router-outlet></router-outlet>

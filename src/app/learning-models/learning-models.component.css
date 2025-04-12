@@ -1,0 +1,273 @@
+
+/* Navbar Container */
+.navbar {
+    background: rgb(8,8,43);
+    background: linear-gradient(90deg, rgba(8,8,43,1) 0%, rgba(34,34,116,1) 35%, rgba(8,8,43,1) 100%);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    position: relative;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+    }
+  
+  /* Left Side - Title */
+  .navbar-left h1 {
+    font-size: 1.5rem;
+    color: white;
+    margin: 0;
+    white-space: nowrap;
+  }
+  
+  /* Right Side Container */
+  .navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  /* Desktop Advanced Button */
+  .advanced-button {
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+    background-color: #fff;
+    font-weight: bold;
+    display: none; /* Hidden on mobile by default */
+  }
+  
+  /* Mobile Menu Button (Hamburger) */
+  .mobile-menu-button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: block;
+    padding: 5px;
+  }
+  
+  /* Mobile Menu Dropdown */
+  .mobile-menu {
+    display: none;
+    width: 100%;
+    background-color: rgba(8,8,43,0.95);
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    padding: 10px 0;
+    border-radius: 0 0 10px 10px;
+  }
+  
+  .mobile-menu.active {
+    display: flex;
+  }
+  
+  /* Mobile Menu Items */
+  .mobile-menu-item {
+    color: white;
+    background: none;
+    border: none;
+    padding: 12px 20px;
+    text-align: left;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.2s;
+  }
+  
+  .mobile-menu-item:hover {
+    background-color: rgba(255,255,255,0.1);
+  }
+  
+  /* Desktop Breakpoint */
+  @media (min-width: 768px) {
+    /* Hide mobile elements */
+    .mobile-menu-button,
+    .mobile-menu {
+      display: none;
+    }
+    
+    /* Show desktop elements */
+    .advanced-button {
+      display: block;
+    }
+    
+    /* Adjust navbar sizing */
+    .navbar {
+      padding: 15px 30px;
+    }
+    
+    .navbar-left h1 {
+      font-size: 1.8rem;
+    }
+  }
+
+/* Base Styles */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1500px;
+    width: 100%;
+    margin: auto;
+    text-align: center;
+    padding: 0 15px;
+  }
+
+  .cards-carousel-container {
+    position: relative;
+    width: 100%;
+    padding: 0 40px; /* Make space for arrows */
+  }
+  
+  .carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 30px;
+    background: rgba(255,255,255,0.8);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 2;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  }
+  
+  .left-arrow {
+    left: 5px;
+  }
+  
+  .right-arrow {
+    right: 5px;
+  }
+  
+  .cards-carousel {
+    display: flex;
+    gap: 15px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding: 10px 0;
+    width: 100%;
+  }
+  
+  /* Hide scrollbar but keep functionality */
+  .cards-carousel::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Card Styles */
+  .card {
+    scroll-snap-align: start;
+    width: 150px;
+    height: 80px;
+    background: radial-gradient(circle, rgb(177, 200, 244) 0%, rgb(168, 244, 238) 100%);
+    padding: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: transform 0.2s;
+  }
+  
+  .card:hover {
+    transform: scale(1.05);
+  }
+  
+  /* Middle Section */
+  .middle-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0;
+    width: 100%;
+  }
+  
+  .middle-section img {
+    max-width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
+  
+  /* Buttons */
+  .buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    width: 100%;
+  }
+  
+  .buttons button {
+    padding: 10px 20px;
+    border: 1px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    min-width: 120px;
+  }
+  
+  .buttons button:nth-child(1) { background-color: rgb(184, 246, 184); }
+  .buttons button:nth-child(2) { background-color: rgb(248, 222, 173); }
+  .buttons button:nth-child(3) { background-color: rgb(246, 176, 176); }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .card {
+      width: 120px;
+      height: 70px;
+      font-size: 14px;
+    }
+  
+    .middle-section img {
+      height: 150px;
+    }
+  
+    .buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .buttons button {
+      width: 80%;
+      max-width: 200px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .card {
+      width: 100px;
+      height: 60px;
+      font-size: 12px;
+    }
+  }
+
+@media (max-width: 768px) {
+  .buttons {
+    flex-direction: row !important; /* Override previous column layout */
+    gap: 10px !important;
+  }
+  
+  .buttons button {
+    width: auto !important;
+    min-width: 100px !important;
+    padding: 8px 12px !important;
+  }
+}
+  

@@ -1,0 +1,43 @@
+<div *ngIf="!hideAppContent">
+<!-- Navbar -->
+<nav class="navbar">
+    <div class="navbar-left">
+      <h1>{{title}}</h1>
+    </div>
+    <div class="navbar-right">
+      <button class="advanced-button">Advanced Concepts</button>
+      <!-- Mobile menu button (hamburger) -->
+      <button class="mobile-menu-button" (click)="toggleMobileMenu()">
+        ☰
+      </button>
+    </div>
+    <!-- Mobile menu (hidden by default) -->
+    <div class="mobile-menu" [class.active]="mobileMenuOpen">
+      <button class="mobile-menu-item">Advanced Concepts</button>
+      <!-- Add other menu items as needed -->
+    </div>
+  </nav>
+
+<!-- Cards -->
+<div class="cards-container">
+  <div class="card">
+      <img src="https://i.pinimg.com/originals/5c/60/bc/5c60bcddd50cc037cc3aeb75efc03c95.gif" alt="Card Image 1">
+      <h3>Learning</h3>
+      <p>Start your adventure here!</p>
+      <button routerLink="/learningModels" class="start-game-button" id="start-game-1">Start Game</button>
+  </div>
+  <div class="card">
+      <img src="../assets/MainPageImages/7fPI (1).gif" alt="Card Image 2">
+      <h3>Challenges</h3>
+      <p>Challenge your skills!</p>
+      <button class="start-game-button">Start Game</button>
+  </div>
+  <div class="card">
+      <img src="../assets/MainPageImages/3NT.gif" alt="Card Image 3">
+      <h3>Game 3</h3>
+      <p>Explore new worlds!</p>
+      <button class="start-game-button">Start Game</button>
+  </div>
+</div>
+</div>
+<router-outlet></router-outlet>

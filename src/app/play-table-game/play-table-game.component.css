@@ -1,0 +1,306 @@
+/* Navbar Container */
+.navbar {
+    background: rgb(8,8,43);
+    background: linear-gradient(90deg, rgba(8,8,43,1) 0%, rgba(34,34,116,1) 35%, rgba(8,8,43,1) 100%);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    position: relative;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+    }
+  
+  /* Left Side - Title */
+  .navbar-left h1 {
+    font-size: 1.5rem;
+    color: white;
+    margin: 0;
+    white-space: nowrap;
+  }
+  
+  /* Right Side Container */
+  .navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  /* Desktop Advanced Button */
+  .advanced-button {
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+    background-color: #fff;
+    font-weight: bold;
+    display: none; /* Hidden on mobile by default */
+  }
+  
+  /* Mobile Menu Button (Hamburger) */
+  .mobile-menu-button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: block;
+    padding: 5px;
+  }
+  
+  /* Mobile Menu Dropdown */
+  .mobile-menu {
+    display: none;
+    width: 100%;
+    background-color: rgba(8,8,43,0.95);
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    padding: 10px 0;
+    border-radius: 0 0 10px 10px;
+  }
+  
+  .mobile-menu.active {
+    display: flex;
+  }
+  
+  /* Mobile Menu Items */
+  .mobile-menu-item {
+    color: white;
+    background: none;
+    border: none;
+    padding: 12px 20px;
+    text-align: left;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.2s;
+  }
+  
+  .mobile-menu-item:hover {
+    background-color: rgba(255,255,255,0.1);
+  }
+  
+  /* Desktop Breakpoint */
+  @media (min-width: 768px) {
+    /* Hide mobile elements */
+    .mobile-menu-button,
+    .mobile-menu {
+      display: none;
+    }
+    
+    /* Show desktop elements */
+    .advanced-button {
+      display: block;
+    }
+    
+    /* Adjust navbar sizing */
+    .navbar {
+      padding: 15px 30px;
+    }
+    
+    .navbar-left h1 {
+      font-size: 1.8rem;
+    }
+  }
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+  }
+  
+  /* Modal content */
+  .modal-content {
+    background: rgb(248,231,180);
+    background: radial-gradient(circle, rgba(248,231,180,1) 0%, rgba(211,241,222,1) 100%);
+    margin: 12% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    text-align: center; 
+    position: relative; 
+  }
+  .modal-content img{
+    width:50%;
+  }
+  
+  /* Close button */
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .cards-container-game {
+display: flex;
+flex-direction: column; /* Arrange tree and baskets vertically */
+align-items: center; /* Center the items horizontally */
+gap: 20px;
+margin-top: 20px;
+}
+.tree-container {
+    text-align: center;
+    position: relative;
+}
+.tree-container img {
+    width: 30%;
+    cursor: pointer;
+}
+.baskets-container {
+display: grid;
+grid-template-columns: repeat(12, 1fr);
+gap: 20px;
+justify-content: center; /* Center the baskets */
+margin-top:20px
+}
+.basket {
+    position: relative;
+}
+.basket img {
+    width: 60px;
+    height: 60px;
+    z-index: 0;
+}
+.apple-holder {
+    position: absolute;
+    bottom: 35px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 5px;
+    z-index: 1;
+}
+.number {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    gap: 5px;
+}
+.apple-holder img {
+    margin: 2px; /* Reduce margin to decrease gap */
+    vertical-align: middle; /* Align items */ 
+}
+.buttons {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-left: 20px;
+}
+.buttons button {
+    padding: 5px 10px;
+    cursor: pointer;
+}
+.moving-item {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    transition: transform 1s ease-in-out;
+    z-index: 1000;
+}
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #f8f9fa;
+}
+.navbar-right {
+    display: flex;
+    align-items: center;
+}
+.monkey-container {
+float: left;
+position: fixed;
+left: 0;
+top: 100px;
+}
+
+.monkey-container img {
+height: 50%;
+width: 60%;
+}
+
+.monkey-container-right {
+float: right;
+position: fixed;
+right: 0;
+top: 100px;
+transform: scaleX(-1);
+}
+
+.monkey-container-right img {
+height: 50%;
+width: 60%;
+}
+
+.leftBush{
+float:left;
+left:-5%;
+position:fixed;
+bottom:-1%;
+z-index:-10;
+}
+.leftBush img{
+width:15%;
+}
+.rightBush img {
+    width: 15%;
+}
+.rightBush {
+    float: right;
+    right: -5%;
+    position: fixed;
+    transform: scaleX(-1);
+    bottom: -1%;
+    z-index:-10;
+}
+
+.quote-box {
+background: rgb(162,244,214);
+background: radial-gradient(circle, rgba(162,244,214,1) 0%, rgba(218,229,245,1) 100%);
+border-left: 5px solid #45dbb3;
+padding: 10px;
+margin-top: 10px;
+width: 150px;
+position: absolute;
+}
+
+.quote-box-left {
+left: 220px; /* Adjust to position near the left monkey */
+top: 50px;
+}
+
+.quote-box-right {
+left: 220px; /* Adjust to position near the right monkey */
+top: 50px;
+transform: scaleX(-1); /* Move it next to the right monkey */
+}
+.plus-one {
+position: relative;
+top: 10px; 
+left: 50%;
+transform: translateX(-50%);
+color: rgb(248, 207, 132);
+font-weight: bold;
+font-size: 20px;
+}
+.plus-one img{
+transform: rotate(-90deg);
+}
