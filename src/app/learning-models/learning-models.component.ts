@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-learning-models',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LearningModelsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -35,7 +36,7 @@ export class LearningModelsComponent implements OnInit {
   }
 
   onLevelSelect(level: string) {
-    window.location.href = '/tables/'+level;
+    this.router.navigate(['/tables', level]);
   }
 
   toggleMobileMenu() {
