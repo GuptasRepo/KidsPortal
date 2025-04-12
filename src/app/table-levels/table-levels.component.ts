@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-table-levels',
@@ -30,7 +31,7 @@ export class TableLevelsComponent implements OnInit {
 ];
 
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
     const url = window.location.pathname; 
@@ -60,7 +61,7 @@ export class TableLevelsComponent implements OnInit {
   }
 
   goToPlay(id:number){
-    window.location.href = '/play/' + id;
+    this.router.navigate(['/play', id]);
   }
 
   toggleMobileMenu() {
