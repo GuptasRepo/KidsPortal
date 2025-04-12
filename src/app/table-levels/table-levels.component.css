@@ -1,0 +1,184 @@
+/* Navbar Container */
+.navbar {
+    background: rgb(8,8,43);
+    background: linear-gradient(90deg, rgba(8,8,43,1) 0%, rgba(34,34,116,1) 35%, rgba(8,8,43,1) 100%);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    position: relative;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+    }
+  
+  /* Left Side - Title */
+  .navbar-left h1 {
+    font-size: 1.5rem;
+    color: white;
+    margin: 0;
+    white-space: nowrap;
+  }
+  
+  /* Right Side Container */
+  .navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  /* Desktop Advanced Button */
+  .advanced-button {
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+    background-color: #fff;
+    font-weight: bold;
+    display: none; /* Hidden on mobile by default */
+  }
+  
+  /* Mobile Menu Button (Hamburger) */
+  .mobile-menu-button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: block;
+    padding: 5px;
+  }
+  
+  /* Mobile Menu Dropdown */
+  .mobile-menu {
+    display: none;
+    width: 100%;
+    background-color: rgba(8,8,43,0.95);
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    padding: 10px 0;
+    border-radius: 0 0 10px 10px;
+  }
+  
+  .mobile-menu.active {
+    display: flex;
+  }
+  
+  /* Mobile Menu Items */
+  .mobile-menu-item {
+    color: white;
+    background: none;
+    border: none;
+    padding: 12px 20px;
+    text-align: left;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.2s;
+  }
+  
+  .mobile-menu-item:hover {
+    background-color: rgba(255,255,255,0.1);
+  }
+  
+  /* Desktop Breakpoint */
+  @media (min-width: 768px) {
+    /* Hide mobile elements */
+    .mobile-menu-button,
+    .mobile-menu {
+      display: none;
+    }
+    
+    /* Show desktop elements */
+    .advanced-button {
+      display: block;
+    }
+    
+    /* Adjust navbar sizing */
+    .navbar {
+      padding: 15px 30px;
+    }
+    
+    .navbar-left h1 {
+      font-size: 1.8rem;
+    }
+  }
+
+  /* Mobile-first styles */
+.cards-container-game {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 cards per row on mobile */
+  gap: 15px;
+  width: 95%;
+  margin: auto;
+  padding: 15px 0;
+}
+
+.card-game {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  text-align: center;
+  transition: transform 0.2s ease;
+}
+
+.card-game img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  max-height: 100px; /* Reduced for mobile */
+}
+
+.play-button {
+  margin-top: 8px;
+  padding: 8px 12px;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #222274;
+  color: white;
+  border: none;
+  font-weight: bold;
+}
+
+/* Tablet view (2-4 cards depending on size) */
+@media (min-width: 600px) {
+  .cards-container-game {
+      grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .card-game img {
+      max-height: 120px;
+  }
+}
+
+/* Small desktop/large tablet */
+@media (min-width: 768px) {
+  .cards-container-game {
+      grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Desktop view */
+@media (min-width: 992px) {
+  .cards-container-game {
+      grid-template-columns: repeat(5, 1fr);
+      gap: 20px;
+  }
+  
+  .card-game {
+      padding: 15px;
+  }
+  
+  .card-game img {
+      max-height: none;
+      height: 60%;
+  }
+  
+  .play-button {
+      padding: 10px 15px;
+      font-size: 16px;
+  }
+}
