@@ -304,32 +304,3 @@ font-size: 20px;
 .plus-one img{
 transform: rotate(-90deg);
 }
-
-.page-wrapper {
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-  position: relative;
-}
-
-.force-landscape {
-  transform: rotate(90deg);
-  transform-origin: left top;
-  position: absolute;
-  width: 100vh;
-  height: 100vw;
-  top: 0;
-  left: 0;
-}
-
-.force-landscape .page-content,
-.force-landscape nav,
-.force-landscape .monkey-container,
-.force-landscape .cards-container-game,
-.force-landscape .leftBush,
-.force-landscape .rightBush {
-  transform: translateY(-100%);
-  width: 100vw;
-  height: 100vh;
-}
-
