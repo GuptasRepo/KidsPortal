@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -235,14 +235,27 @@ export class PlayTableGameComponent implements OnInit {
   };
 
   constructor(private router: Router, private route: ActivatedRoute) { }
-
+  rotateUI: boolean = false;
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
+      this.checkMobilePortrait();
       const numberParam = params.get('id');
       console.log('Number from URL:', numberParam);
       this.tableNumber = numberParam ? +numberParam : 1;
       this.initGame();
     });
+  }
+
+  @HostListener('window:resize')
+  onResize() {
+    this.checkMobilePortrait();
+    this.setStylesBasedOnTableNumber();
+  }
+
+  checkMobilePortrait() {
+    const isMobile = /Mobi|Android|iPhone/i.test(navigator.userAgent);
+    const isPortrait = window.innerHeight > window.innerWidth;
+    this.rotateUI = isMobile && isPortrait;
   }
 
   initGame(): void {
@@ -264,133 +277,148 @@ export class PlayTableGameComponent implements OnInit {
   }
 
   setStylesBasedOnTableNumber(): void {
+    const isMobile = window.innerWidth <= 768; // Check if the screen width is mobile size
     const modalImg = document.getElementById('modal_img') as HTMLImageElement;
     const tree = document.getElementById('tree') as HTMLImageElement;
     const sideImageLeft = document.getElementById('sideImageleft') as HTMLImageElement;
     const sideImageRight = document.getElementById('sideImageright') as HTMLImageElement;
     const leftFooter = document.getElementById('leftFooter') as HTMLImageElement;
     const rightFooter = document.getElementById('rightFooter') as HTMLImageElement;
-
-    if (this.tableNumber === 2) {
-      modalImg.style.width = '30%';
-      tree.style.height = '350px';
-      tree.style.width = '350px';
-      sideImageLeft.style.height = '350px';
-      sideImageLeft.style.width = '200px';
-      sideImageRight.style.height = '350px';
-      sideImageRight.style.width = '200px';
-    } else if (this.tableNumber === 6 || this.tableNumber === 12 || this.tableNumber === 13) {
-      modalImg.style.width = '70%';
-    } else if (this.tableNumber === 9 || this.tableNumber === 11 || this.tableNumber === 14) {
-      modalImg.style.width = '80%';
-    }
-
-    if (this.tableNumber === 3 || this.tableNumber === 4) {
-      tree.style.height = '350px';
-      tree.style.width = '400px';
-      sideImageLeft.style.height = '300px';
-      sideImageRight.style.height = '300px';
-      leftFooter.style.width = '65%';
-      rightFooter.style.width = '65%';
-    } else if (this.tableNumber === 5) {
-      tree.style.height = '330px';
-      tree.style.width = '330px';
-      sideImageRight.style.height = '350px';
-    } else if (this.tableNumber === 6) {
-      tree.style.height = '300px';
-      tree.style.width = '450px';
-      sideImageLeft.style.height = '350px';
-      sideImageLeft.style.width = '150px';
-      sideImageRight.style.width = '150px';
-      sideImageRight.style.height = '350px';
-    } else if (this.tableNumber === 7) {
-      tree.style.height = '350px';
-      tree.style.width = '450px';
-      sideImageLeft.style.height = '250px';
-      sideImageLeft.style.width = '200px';
-      sideImageRight.style.width = '150px';
-      sideImageRight.style.height = '250px';
-    } else if (this.tableNumber === 8) {
-      tree.style.height = '350px';
-      tree.style.width = '450px';
-      sideImageLeft.style.height = '250px';
-      sideImageLeft.style.width = '200px';
-      sideImageRight.style.width = '200px';
-      sideImageRight.style.height = '250px';
-    } else if (this.tableNumber === 9) {
-      tree.style.height = '300px';
-      tree.style.width = '450px';
-      sideImageLeft.style.height = '250px';
-      sideImageLeft.style.width = '200px';
-      sideImageRight.style.width = '200px';
-      sideImageRight.style.height = '250px';
-    } else if (this.tableNumber === 10) {
-      tree.style.height = '370px';
-      tree.style.width = '450px';
-      sideImageLeft.style.height = '250px';
-      sideImageLeft.style.width = '150px';
-      sideImageRight.style.width = '200px';
-      sideImageRight.style.height = '250px';
-    } else if (this.tableNumber === 11) {
-      tree.style.height = '350px';
-      tree.style.width = '450px';
-      sideImageLeft.style.height = '300px';
-      sideImageLeft.style.width = '200px';
+  
+    if (isMobile) {
+      // Mobile-friendly styles
+      modalImg.style.width = '50%';
+      tree.style.height = '200px';
+      tree.style.width = '200px';
+      sideImageLeft.style.height = '150px';
+      sideImageLeft.style.width = '100px';
+      sideImageRight.style.height = '150px';
       sideImageRight.style.width = '100px';
-      sideImageRight.style.height = '300px';
-      leftFooter.style.width = '200px';
-      leftFooter.style.marginLeft = '50px';
-      rightFooter.style.width = '200px';
-      rightFooter.style.marginLeft = '50px';
-    } else if (this.tableNumber === 12) {
-      tree.style.height = '350px';
-      tree.style.width = '450px';
-      sideImageLeft.style.height = '300px';
-      sideImageLeft.style.width = '250px';
-      sideImageRight.style.width = '250px';
-      sideImageRight.style.height = '300px';
-    } else if (this.tableNumber === 13) {
-      tree.style.height = '320px';
-      tree.style.width = '450px';
-      sideImageLeft.style.height = '300px';
-      sideImageLeft.style.width = '270px';
-      sideImageRight.style.width = '220px';
-      sideImageRight.style.height = '300px';
-      leftFooter.style.width = '250px';
-      rightFooter.style.width = '250px';
-    } else if (this.tableNumber === 14) {
-      tree.style.height = '350px';
-      tree.style.width = '450px';
-      sideImageLeft.style.height = '300px';
-      sideImageLeft.style.width = '200px';
-      sideImageRight.style.width = '150px';
-      sideImageRight.style.height = '300px';
-      leftFooter.style.width = '200px';
-      leftFooter.style.marginLeft = '50px';
-      rightFooter.style.width = '200px';
-      rightFooter.style.marginLeft = '50px';
-    } else if (this.tableNumber === 15) {
-      tree.style.height = '350px';
-      tree.style.width = '450px';
-      sideImageLeft.style.height = '300px';
-      sideImageLeft.style.width = '280px';
-      sideImageRight.style.width = '200px';
-      sideImageRight.style.height = '300px';
-      leftFooter.style.width = '150px';
-      leftFooter.style.marginLeft = '60px';
-      rightFooter.style.width = '150px';
-      rightFooter.style.marginLeft = '60px';
-    } else if (this.tableNumber === 16) {
-      tree.style.height = '350px';
-      tree.style.width = '450px';
-      sideImageLeft.style.height = '300px';
-      sideImageLeft.style.width = '200px';
-      sideImageRight.style.width = '200px';
-      sideImageRight.style.height = '300px';
-      leftFooter.style.width = '150px';
-      leftFooter.style.marginLeft = '60px';
-      rightFooter.style.width = '150px';
-      rightFooter.style.marginLeft = '60px';
+      leftFooter.style.width = '100px';
+      rightFooter.style.width = '100px';
+    } else {
+      // Default styles for larger screens
+      if (this.tableNumber === 2) {
+        modalImg.style.width = '30%';
+        tree.style.height = '350px';
+        tree.style.width = '350px';
+        sideImageLeft.style.height = '350px';
+        sideImageLeft.style.width = '200px';
+        sideImageRight.style.height = '350px';
+        sideImageRight.style.width = '200px';
+      } else if (this.tableNumber === 6 || this.tableNumber === 12 || this.tableNumber === 13) {
+        modalImg.style.width = '70%';
+      } else if (this.tableNumber === 9 || this.tableNumber === 11 || this.tableNumber === 14) {
+        modalImg.style.width = '80%';
+      }
+  
+      if (this.tableNumber === 3 || this.tableNumber === 4) {
+        tree.style.height = '350px';
+        tree.style.width = '400px';
+        sideImageLeft.style.height = '300px';
+        sideImageRight.style.height = '300px';
+        leftFooter.style.width = '65%';
+        rightFooter.style.width = '65%';
+      } else if (this.tableNumber === 5) {
+        tree.style.height = '330px';
+        tree.style.width = '330px';
+        sideImageRight.style.height = '350px';
+      } else if (this.tableNumber === 6) {
+        tree.style.height = '300px';
+        tree.style.width = '450px';
+        sideImageLeft.style.height = '350px';
+        sideImageLeft.style.width = '150px';
+        sideImageRight.style.width = '150px';
+        sideImageRight.style.height = '350px';
+      } else if (this.tableNumber === 7) {
+        tree.style.height = '350px';
+        tree.style.width = '450px';
+        sideImageLeft.style.height = '250px';
+        sideImageLeft.style.width = '200px';
+        sideImageRight.style.width = '150px';
+        sideImageRight.style.height = '250px';
+      } else if (this.tableNumber === 8) {
+        tree.style.height = '350px';
+        tree.style.width = '450px';
+        sideImageLeft.style.height = '250px';
+        sideImageLeft.style.width = '200px';
+        sideImageRight.style.width = '200px';
+        sideImageRight.style.height = '250px';
+      } else if (this.tableNumber === 9) {
+        tree.style.height = '300px';
+        tree.style.width = '450px';
+        sideImageLeft.style.height = '250px';
+        sideImageLeft.style.width = '200px';
+        sideImageRight.style.width = '200px';
+        sideImageRight.style.height = '250px';
+      } else if (this.tableNumber === 10) {
+        tree.style.height = '370px';
+        tree.style.width = '450px';
+        sideImageLeft.style.height = '250px';
+        sideImageLeft.style.width = '150px';
+        sideImageRight.style.width = '200px';
+        sideImageRight.style.height = '250px';
+      } else if (this.tableNumber === 11) {
+        tree.style.height = '350px';
+        tree.style.width = '450px';
+        sideImageLeft.style.height = '300px';
+        sideImageLeft.style.width = '200px';
+        sideImageRight.style.width = '100px';
+        sideImageRight.style.height = '300px';
+        leftFooter.style.width = '200px';
+        leftFooter.style.marginLeft = '50px';
+        rightFooter.style.width = '200px';
+        rightFooter.style.marginLeft = '50px';
+      } else if (this.tableNumber === 12) {
+        tree.style.height = '350px';
+        tree.style.width = '450px';
+        sideImageLeft.style.height = '300px';
+        sideImageLeft.style.width = '250px';
+        sideImageRight.style.width = '250px';
+        sideImageRight.style.height = '300px';
+      } else if (this.tableNumber === 13) {
+        tree.style.height = '320px';
+        tree.style.width = '450px';
+        sideImageLeft.style.height = '300px';
+        sideImageLeft.style.width = '270px';
+        sideImageRight.style.width = '220px';
+        sideImageRight.style.height = '300px';
+        leftFooter.style.width = '250px';
+        rightFooter.style.width = '250px';
+      } else if (this.tableNumber === 14) {
+        tree.style.height = '350px';
+        tree.style.width = '450px';
+        sideImageLeft.style.height = '300px';
+        sideImageLeft.style.width = '200px';
+        sideImageRight.style.width = '150px';
+        sideImageRight.style.height = '300px';
+        leftFooter.style.width = '200px';
+        leftFooter.style.marginLeft = '50px';
+        rightFooter.style.width = '200px';
+        rightFooter.style.marginLeft = '50px';
+      } else if (this.tableNumber === 15) {
+        tree.style.height = '350px';
+        tree.style.width = '450px';
+        sideImageLeft.style.height = '300px';
+        sideImageLeft.style.width = '280px';
+        sideImageRight.style.width = '200px';
+        sideImageRight.style.height = '300px';
+        leftFooter.style.width = '150px';
+        leftFooter.style.marginLeft = '60px';
+        rightFooter.style.width = '150px';
+        rightFooter.style.marginLeft = '60px';
+      } else if (this.tableNumber === 16) {
+        tree.style.height = '350px';
+        tree.style.width = '450px';
+        sideImageLeft.style.height = '300px';
+        sideImageLeft.style.width = '200px';
+        sideImageRight.style.width = '200px';
+        sideImageRight.style.height = '300px';
+        leftFooter.style.width = '150px';
+        leftFooter.style.marginLeft = '60px';
+        rightFooter.style.width = '150px';
+        rightFooter.style.marginLeft = '60px';
+      }
     }
   }
   
