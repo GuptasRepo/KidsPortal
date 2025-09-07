@@ -1,16 +1,25 @@
 <!-- Navbar -->
+
 <nav class="navbar">
     <div class="navbar-left">
-        <h1>Kids Portal</h1>
+      <h1>Kids Portal</h1>
     </div>
     <div class="navbar-right">
-        <!-- <h3 id="score">Score : 00</h3> -->
-        <div class="buttons">
-            <button (click)="submitBaskets()">Submit</button>
-            <button (click)="clearBaskets()">Clear All</button>
-        </div>
+      <button class="advanced-button" (click)="submitBaskets()">Submit</button>
+      <button class="advanced-button" (click)="clearBaskets()">Clear All</button>
+      <!-- Mobile menu button (hamburger) -->
+      <button class="mobile-menu-button" (click)="toggleMobileMenu()">
+        ☰
+      </button>
     </div>
-</nav>
+    <!-- Mobile menu (hidden by default) -->
+    <div class="mobile-menu" [class.active]="mobileMenuOpen">
+      <button class="mobile-menu-item">Advanced Concepts</button>
+      <button class="mobile-menu-item">Home</button>
+
+      <!-- Add other menu items as needed -->
+    </div>
+  </nav>
 
 <div class="monkey-container">
     <img id="sideImageleft" [src]="sideImagesLeft[tableNumber]">
@@ -57,19 +66,3 @@
         <p id="multiplication">{{multiplicationText}}</p>
     </div>
 </div>
-
-<!-- Fun Fact Sidebar -->
-<div class="fun-fact-sidebar" [ngClass]="{ 'hidden': !funFactVisible }">
-    <div class="fun-fact-header">
-      <h3>Fun Fact!</h3>
-      <button (click)="toggleFunFact()" class="close-fact">✖</button>
-    </div>
-    <p class="fun-fact-content">{{ currentFunFact }}</p>
-    <p class="fun-fact-link" *ngIf="funFactLink">
-        <a [routerLink]="funFactLink">Try it out</a>
-      </p>
-  </div>
-  
-  <!-- Show Fact Button (when hidden) -->
-  <button class="show-fact-btn" *ngIf="!funFactVisible" (click)="toggleFunFact()">Show Fact</button>
-  
