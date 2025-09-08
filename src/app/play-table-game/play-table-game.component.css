@@ -304,3 +304,201 @@ font-size: 20px;
 .plus-one img{
 transform: rotate(-90deg);
 }
+.fun-fact-sidebar {
+    position: fixed;
+    top: 70px;
+    right: 0;
+    width: 20%;
+    height: auto;
+    background-color: #fff5e6;
+    border-left: 3px solid #ff9900;
+    padding: 20px;
+    box-shadow: -3px 0 10px rgba(0,0,0,0.2);
+    z-index: 1000;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .fun-fact-sidebar.hidden {
+    transform: translateX(100%);
+  }
+  
+  .fun-fact-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .fun-fact-header h3 {
+    margin: 0;
+    font-size: 18px;
+    color: #e67300;
+  }
+  
+  .close-fact {
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    color: #cc3300;
+    float:right
+  }
+  
+  .fun-fact-content {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #444;
+  }
+  
+  .show-fact-btn {
+  position: fixed;
+  top: 200px;
+  right: 100px;
+  background: radial-gradient(circle, rgba(162,244,214,1) 0%, rgba(218,229,245,1) 100%);
+  color: #100a01;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 1px;
+
+  /* Board look */
+  border: 3px solid #45dbb3;
+  border-radius: 10px;
+
+  /* Size */
+  padding: 10px 20px;
+  font-size: 14px;
+
+  /* Carved text effect */
+  text-shadow: 1px 1px 0px #fff3, -1px -1px 1px #0003;
+
+  /* Wooden sign shadow */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6);
+
+  cursor: pointer;
+  z-index: 1000;
+
+  /* Gentle floating animation */
+  animation: floatBoard 4s ease-in-out infinite;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Hover glow */
+.show-fact-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.7), 0 0 12px rgba(69, 219, 179, 0.6);
+}
+
+/* Floating animation */
+@keyframes floatBoard {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-6px); }
+}
+
+
+.fruit-circle {
+  position: fixed;
+  top: 260px;    /* position below fact button */
+  right: 50px;   /* align with button */
+  width: 200px;
+  height: 160px;
+  border-radius: 50%;
+  z-index: 900;
+}
+
+/* Common fruit style */
+.fruit-circle img {
+  position: absolute;
+  width: 50px;   /* fruit size */
+  height: 50px;
+  object-fit: contain;
+  top: 50%;
+  left: 50%;
+  margin: -25px; /* center fruits properly */
+  animation: orbit 10s linear infinite;
+  transform-origin: 0 -80px; /* orbit radius */
+}
+
+/* Delay each fruit so they spread around circle */
+.fruit-circle img:nth-child(1) { animation-delay: 0s; }
+.fruit-circle img:nth-child(2) { animation-delay: -2s; }
+.fruit-circle img:nth-child(3) { animation-delay: -4s; }
+.fruit-circle img:nth-child(4) { animation-delay: -6s; }
+.fruit-circle img:nth-child(5) { animation-delay: -8s; }
+
+@keyframes orbit {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* The box that opens */
+.fact-box {
+  position: fixed;
+  top: 150px;       /* below the button */
+  right: 50px;
+  width: 300px;
+  max-height: 0;
+  overflow: hidden;
+  padding: 0 20px;
+  background: linear-gradient(180deg, #a2f4d6, #dae5f5);
+  border: 3px solid #45dbb3;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.6);
+  z-index: 950;
+  animation: scrollOpen 1s ease forwards;
+}
+
+.fact-box h2 {
+  margin: 10px 0;
+  text-align: center;
+  color: #100a01;
+}
+
+.fact-box p {
+  margin: 10px 0 20px;
+  text-align: center;
+  color: #333;
+  font-size: 16px;
+}
+
+/* Scroll-like open animation */
+@keyframes scrollOpen {
+  0%   { max-height: 0; padding-top: 0; padding-bottom: 0; opacity: 0; }
+  100% { max-height: 400px; padding-top: 20px; padding-bottom: 20px; opacity: 1; }
+}
+
+/* Apples in a straight line */
+.apples-line {
+  position: fixed;
+  top: 110px;    /* just above the box */
+  right: 40px;
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  width: 320px;
+  animation: fadeSlide 1s ease forwards;
+}
+
+.apples-line img {
+  width: 50px;
+  height: 50px;
+  transform: translateY(-40px);
+  opacity: 0;
+  animation: dropIn 0.6s ease forwards;
+}
+
+.apples-line img:nth-child(1) { animation-delay: 0.2s; }
+.apples-line img:nth-child(2) { animation-delay: 0.4s; }
+.apples-line img:nth-child(3) { animation-delay: 0.6s; }
+.apples-line img:nth-child(4) { animation-delay: 0.8s; }
+.apples-line img:nth-child(5) { animation-delay: 1s; }
+
+/* Apples drop in animation */
+@keyframes dropIn {
+  from { transform: translateY(-40px); opacity: 0; }
+  to   { transform: translateY(0); opacity: 1; }
+}
+
+/* Fade + slide for the row */
+@keyframes fadeSlide {
+  from { opacity: 0; transform: translateY(-20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}

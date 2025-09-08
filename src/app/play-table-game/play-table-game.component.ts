@@ -234,15 +234,53 @@ export class PlayTableGameComponent implements OnInit {
     16: "../../assets/movingImages/mushroom.png"
   };
 
+  funFactVisible: boolean = false;
+
+  factText = '';
+  factLink = '';
+
+  funFacts: { [key: number]: string } = {
+    1: "Apples are made of 25% air, which is why they float!",
+    2: "Carrots were originally purple, not orange.",
+    3: "Balloons were first invented using animal intestines.",
+    4: "Chocochips were invented by accident in 1930!",
+    5: "Eggs contain every vitamin except vitamin C.",
+    6: "Spinach is high in iron, but it’s best absorbed with vitamin C.",
+    7: "Cookies were originally used to test oven temperatures.",
+    8: "Crayons can last more than 30 years!",
+    9: "Books were originally handwritten before the printing press.",
+    10: "Laddoos are one of the oldest sweets in Indian cuisine.",
+    11: "Cherries belong to the rose family!",
+    12: "Bananas are berries, botanically speaking!",
+    13: "There are over 400,000 species of flowers!",
+    14: "Jalebis were mentioned in ancient Indian texts!",
+    15: "Rubber balls were first used by the Aztecs.",
+    16: "Mushrooms are more closely related to animals than plants."
+  };
+
   constructor(private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(params => {
-      const numberParam = params.get('id');
-      console.log('Number from URL:', numberParam);
-      this.tableNumber = numberParam ? +numberParam : 1;
-      this.initGame();
+    this.route.params.subscribe(params => {
+      const number = +params['id'];
+      this.tableNumber =number || 1;
+
+        //Reset everything
+        this.clickCount = 0;
+        this.factText = '';
+        this.factLink = '';
+        this.modalDisplay = 'none';
+        this.isClickAllowed = true;
+
+        //Clear old DOM elements from previous table
+        this.clearBaskets();
+        this.initGame();
     });
+    /*const url = window.location.pathname; 
+    const lastSlashIndex = url.lastIndexOf('/');
+    const number = url.slice(lastSlashIndex + 1);
+    this.tableNumber = +number || 1; */
+    
   }
 
   initGame(): void {
@@ -400,6 +438,12 @@ export class PlayTableGameComponent implements OnInit {
     this.clickCount++;
     const basketIndex = this.clickCount;
     const basket = document.getElementById(`basket${basketIndex}`);
+
+    const multiplier = basketIndex;
+    const multiplicand = this.tableNumber;
+    const product = multiplier * multiplicand;
+    this.factText = `${multiplier} × ${multiplicand} = ${multiplicand} × ${multiplier} = ${product} ${this.items[this.tableNumber]}`;
+    this.factLink = `/play/${multiplier}`;
   
     if (basket) {
       const appleOrFlower = document.createElement('img');
@@ -575,5 +619,18 @@ export class PlayTableGameComponent implements OnInit {
     window.speechSynthesis.cancel();
     this.modalDisplay = 'none';
   }
+
+get currentFunFact(): string {
+    //return this.funFacts[this.tableNumber] || "Did you know? Fun facts make learning exciting!";
+    return this.factText || "Did you know? Fun facts make learning exciting!";
+  }
+  get funFactLink(): string {
+    //return this.funFacts[this.tableNumber] || "Did you know? Fun facts make learning exciting!";
+    return this.factLink || '';
+  }
+  toggleFunFact(): void {
+    this.funFactVisible = !this.funFactVisible;
+  }
+
 
 }
